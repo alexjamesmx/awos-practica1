@@ -23,8 +23,10 @@ else if ( $accion == "cambio" ){
 <title>Practica 1</title>
 <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
 <link rel="stylesheet" href="./node_modules/fontawesome-free-5.15.4-web/css/all.min.css">
-    <script src='./node_modules/jquery/jquery.min.js'></script>
-    <script src='./node_modules/bootstrap/dist/js/bootstrap.min.js'></script>
+  
+<script src='./node_modules/jquery/jquery.min.js'></script>
+<script src='./node_modules/bootstrap/dist/js/bootstrap.min.js'></script>
+<script src='./formulario.js'></script> 
 </head>
 <body>
     <div class="container mt-2 mb-4 ">
@@ -38,14 +40,15 @@ else if ( $accion == "cambio" ){
                 </div>
                 <div class='form-group col-md-3'id='group-apellido'>
                     <label for=""><strong>Apellidos:</strong></label>
-                    <input type='text' class='form-control' name='nombre' id='nombre' ></input>
+                    <input type='text' class='form-control' name='apellido' id='apellido'value='<?= $apellidos ?>' ></input>
                 </div>
                 <div class='form-group col-md-4'id='group-correo'>
                     <label for=""><strong>Correo:</strong></label>
-                    <input type='text' class='form-control' name='nombre' id='nombre' ></input>
+                    <input type='text' class='form-control' name='correo' id='correo'value='<?= $correo ?> '></input>
                 </div>
                 <div class='form-group col-md-3'id='group-correo'>
-                    <label for=""><strong>Password:</strong></label>
+                    <label for=""><strong>Password:</strong>
+                    <small class='text-secondary text-opacity-50'>Write down if change</small></label>
                     <input type='password' class='form-control' name='contrasenia' id='contrasenia' ></input>
                 </div>
             </div>
@@ -53,19 +56,22 @@ else if ( $accion == "cambio" ){
 
             <div class='row mb-5'>
                 <div class='form-group col-md-4'id='group-idpais'>
-                    <label for=""><strong>Pais:</strong></label>
+                    <label><strong>Pais:</strong></label>
                     <select class='form-control' name='idpais' id='idpais' >
                     </select>
+                    <input type="hidden" id='idpais-hidden'value='<?= $idpais ?>'></input>
                 </div>
                 <div class='form-group col-md-4'id='group-idedo'>
-                    <label for=""><strong>Estado/Provincia:</strong></label>
-                    <select class='form-control' name='idedo' id='idpais' >   
+                    <label><strong>Estado/Provincia:</strong></label>
+                    <select class='form-control' name='idedo' id='idedo' >   
                     </select>
+                    <input type="hidden" id='idedo-hidden'value='<?= $idedo ?>'></input>
                 </div>
                 <div class='form-group col-md-4'id='group-idmpio'>
-                    <label for=""><strong>Municipio/Condado:</strong></label>
-                    <select class='form-control' name='idmpio' id='idpais' >
+                    <label><strong>Municipio/Condado:</strong></label>
+                    <select class='form-control' name='idmpio' id='idmpio' >
                     </select>
+                    <input type="hidden" id='idmpio-hidden'value='<?= $idmpio ?>'></input>
                 </div>
             </div>
        
