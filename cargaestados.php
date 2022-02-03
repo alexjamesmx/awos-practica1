@@ -9,7 +9,5 @@ $rs = query( $sql );
 
 echo json_encode($rs->fetch_all());
 
-
-
 desconectar();
 ?>

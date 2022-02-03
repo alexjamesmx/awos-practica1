@@ -83,6 +83,10 @@ else if ( $accion == "cambio" ){
             <i class='fas fa-ban'></i>
             Restablecer
         </button>
+        <a href="./lista.php" class='btn btn-lg btn-danger'>
+            <i class='fas fa-times'></i>
+            Cancelar
+        </a>
     </form>
     </div>
 </body>
