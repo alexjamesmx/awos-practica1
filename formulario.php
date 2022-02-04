@@ -79,7 +79,7 @@ else if ( $accion == "cambio" ){
             <i class='fas fa-save'></i>
             Guardar
         </button>
-        <button type='reset'class='btn btn-lg btn-secondary'>
+        <button type='reset'class='btn btn-lg btn-secondary'id='btn-restablecer'>
             <i class='fas fa-ban'></i>
             Restablecer
         </button>
