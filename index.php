@@ -50,7 +50,9 @@ extract($_REQUEST) //DETECTAR ERROR
             </form>
           </div>
           <div class='card-footer bg-info bg-opacity-50 text-center'>
-            <a href="#"> <i class='fas fa-user-plus'></i>
+            <a href="#"
+            data-bs-toggle='modal'
+            data-bs-target='#modal-registro'> <i class='fas fa-user-plus'></i>
               Registra usuario</a>
           </div>
         </div>
@@ -64,10 +66,20 @@ extract($_REQUEST) //DETECTAR ERROR
       if (isset($iderror)) :
         switch ($iderror) {
           case 1:
+            $tipo  = "danger";
             $mensaje = "User or email field are incorrect";
             break;
           case 2:
+            $tipo  = "danger";
             $mensaje = "Invalid session";
+            break;
+          case 3:
+            $tipo  = "danger";
+            $mensaje = "User  has already logged in";
+            break;
+          case 4:
+            $tipo  = "success";
+            $mensaje = "El usuario ha sido registrado con exito";
             break;
           default:
             $mensaje = "Error desconocido paso";
@@ -75,8 +87,8 @@ extract($_REQUEST) //DETECTAR ERROR
 
       ?>
 
-        <div class="alert alert-danger alert-dismissible fade show col-md-6" role="alert">
-          <strong>ERROR:</strong> <?= $mensaje ?>
+        <div class="alert alert-<?= $tipo ?> alert-dismissible fade show col-md-6" role="alert">
+          <strong><?= $tipo == 'danger' ? "ERROR: " : "SUCCESS:"  ?>:</strong> <?= $mensaje ?>
           <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -86,6 +98,39 @@ extract($_REQUEST) //DETECTAR ERROR
       ?>
     </div>
   </div>
+
+
+
+  <!-- Modal -->
+  <div class="modal fade" id="modal-registro" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">New user</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form action='./registro.php' method='post'>
+        <div class="modal-body">
+
+
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+              <i class=' fas fa-times'></i>
+              Cancel
+            </button>
+            <button type="submit" class="btn btn-primary">
+              <i class='fas fa-save'></i>
+              Save changes
+            </button>
+          </div>
+          
+        </form>
+      </div>
+    </div>
+  </div>
+
 </body>
 
 </html>
