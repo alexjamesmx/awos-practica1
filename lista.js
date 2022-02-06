@@ -14,7 +14,10 @@ $(document).ready( function(){
     $( "#btn-borrar-confirmar" ).click( function() {
        
         $( location ).attr( "href",
-        "procesa.php?accion=baja&idpersona=" + $( this ).attr( "data-idpersona" )
+        "procesa.php?accion=baja&idpersona=" + 
+        $( this ).attr( "data-idpersona" )  +
+        "&c=" + appData.c +
+        "&s=" + appData.s
         );
     });
 

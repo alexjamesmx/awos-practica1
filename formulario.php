@@ -1,6 +1,13 @@
 <?php 
 require_once("./helper.php");
 $mysqli = conectar();
+extract($_REQUEST); // recuperar usuario (correo) y sesion
+session_start(); //restaurar sesion
+if (!sesion_valida($c, $s)) :
+    desconectar();
+    header("location:.?iderror=2");
+else :
+  
 //Recibir como parametro el idpersona / accion
 $accion = $_REQUEST[ "accion" ];
 if ( $accion == "alta" ){
@@ -37,10 +44,20 @@ else if ( $accion == "cambio" ){
 <body>
     <div class="container mt-2 mb-4 ">
         <h3>Practica 1 Ajaxx y sesiones</h3>
+        <a href="cerrar.php?c=<?=$c?>&s=<?=$s?>">
+      <small>
+        <i class='fas fa-sign-out-alt'> </i>
+          Log out (<?= $_SESSION["correo"] ?>)
+          </small>
+      </a>
   
         <form action='./procesa.php'id='form-persona'> 
+
+
         <input type="hidden"name='accion'value="<?=$accion?>">
         <input type="hidden"name='idpersona'value="<?=$idpersona?>">
+        <input type="hidden"name='c'value="<?=$c?>">
+        <input type="hidden"name='s'value="<?=$s?>">
 
             <div class='row mt-4'>
                 <div class='form-group col-md-2' id='group-nombre'>
@@ -92,7 +109,7 @@ else if ( $accion == "cambio" ){
             <i class='fas fa-ban'></i>
             Restablecer
         </button>
-        <a href="./lista.php" class='btn btn-lg btn-danger'>
+        <a href="./lista.php?c=<?= $c ?>&s=<?= $s ?>" class='btn btn-lg btn-danger'>
             <i class='fas fa-times'></i>
             Cancelar
         </a>
@@ -103,4 +120,5 @@ else if ( $accion == "cambio" ){
 
 <?php  
 desconectar();
+endif;
 ?>

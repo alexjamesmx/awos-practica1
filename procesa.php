@@ -2,8 +2,13 @@
 
 require_once( "./helper.php" );
 $mysqli = conectar();
-extract ( $_REQUEST );
 
+extract($_REQUEST); // recuperar usuario (correo) y sesion
+session_start(); //restaurar sesion
+if (!sesion_valida($c, $s)) :
+    desconectar();
+    header("location:.?iderror=2");
+else :
 
     // Normalizacion de datos 
     if( $accion == "alta" || $accion == "cambio"){
@@ -50,6 +55,6 @@ switch ( $accion ) {
 query($sql);
 
 desconectar();
-header( "location:lista.php" );
-
+header( "location:lista.php?c=$c&s=$s" );
+endif;
 ?>

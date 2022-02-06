@@ -1,9 +1,9 @@
 <?php
 require_once("./helper.php");
 $mysqli = conectar();
-session_start();
-extract($_REQUEST); // recuperar usuario (correo) y sesion
 
+extract($_REQUEST); // recuperar usuario (correo) y sesion
+session_start(); //restaurar sesion
 if (!sesion_valida($c, $s)) :
     desconectar();
     header("location:.?iderror=2");
@@ -33,6 +33,12 @@ order by apellidos, nombre";
     <link rel="stylesheet" href="./fontawesome-free-5.15.4-web/css/all.min.css">
     <script src="./js/jquery-3.6.0.min.js"></script>
     <script src="./bootstrap-5.1.3-dist/js/bootstrap.min.js"></script> -->
+    <script>
+        var appData = {
+            "c" : "<?= $c ?>" ,
+            "s" : "<?= $s ?>"
+        };
+    </script>
     </head>
 
     <body>
@@ -77,10 +83,13 @@ order by apellidos, nombre";
                                 <td><?= $nomestado ?></td>
                                 <td><?= $nommpio ?></td>
                                 <td class='text-center d-flex justify-content-around'>
-                                    <a class='btn btn-primary' href='./formulario.php?accion=cambio&idpersona=<?= $idpersona ?>'>
+                                    <a class='btn btn-primary' 
+                                    href='./formulario.php?accion=cambio&idpersona=<?= $idpersona ?>
+                                    &c=<?= $c ?>&s=<?= $s ?>'>
                                         <i class='fas fa-user-edit'></i>
                                     </a>
-                                    <button class='btn btn-danger btn-borrar' type='button' data-bs-toggle='modal' data-bs-target='#modal-bajas' data-idpersona='<?= $idpersona ?>' data-nombre-persona="<?= "$nombre $apellidos" ?>">
+                                    <button class='btn btn-danger btn-borrar' type='button'
+                                     data-bs-toggle='modal' data-bs-target='#modal-bajas' data-idpersona='<?= $idpersona ?>' data-nombre-persona="<?= "$nombre $apellidos" ?>">
                                         <i class='fas fa-user-times'></i>
                                     </button>
                                 </td>
@@ -103,7 +112,7 @@ order by apellidos, nombre";
             ?>
 
 
-            <a class='btn btn-success btn-lg mt-3' href='./formulario.php?accion=alta'>
+            <a class='btn btn-success btn-lg mt-3' href='./formulario.php?accion=alta&c=<?= $c ?>&s=<?= $s ?>'>
                 <i class='fas fa-user-plus fa-2x'></i>
                 Agregar persona
             </a>
