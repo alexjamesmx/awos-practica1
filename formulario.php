@@ -4,7 +4,14 @@ $mysqli = conectar();
 //Recibir como parametro el idpersona / accion
 $accion = $_REQUEST[ "accion" ];
 if ( $accion == "alta" ){
-
+    $idpersona  = 0;
+    $nombre     = "";
+    $apellidos  = "";
+    $correo     = "";
+    $idpais     = 0;
+    $idedo      = 0;
+    $idmpio     = 0;
+    
 }
 else if ( $accion == "cambio" ){
         $idpersona = $_REQUEST[ "idpersona" ];
@@ -12,7 +19,6 @@ else if ( $accion == "cambio" ){
         $rs = query( $sql );
         $row = $rs->fetch_assoc();
         extract( $row );
-        $nombre  = mb_strtoupper( $nombre );
 }
 ?>
 
@@ -32,19 +38,22 @@ else if ( $accion == "cambio" ){
     <div class="container mt-2 mb-4 ">
         <h3>Practica 1 Ajaxx y sesiones</h3>
   
-        <form action='./procesa.php'> 
-            <div class='row'>
+        <form action='./procesa.php'id='form-persona'> 
+        <input type="hidden"name='accion'value="<?=$accion?>">
+        <input type="hidden"name='idpersona'value="<?=$idpersona?>">
+
+            <div class='row mt-4'>
                 <div class='form-group col-md-2' id='group-nombre'>
                     <label for=""><strong>Nombre:</strong></label>
-                    <input type='text' class='form-control' name='nombre' id='nombre'value="<?= $nombre ?>" ></input>
+                    <input type='text' class='form-control' name='nombre' id='nombre'value="<?= $nombre?>" ></input>
                 </div>
                 <div class='form-group col-md-3'id='group-apellido'>
                     <label for=""><strong>Apellidos:</strong></label>
-                    <input type='text' class='form-control' name='apellido' id='apellido'value='<?= $apellidos ?>' ></input>
+                    <input type='text' class='form-control' name='apellidos' id='apellidos'value='<?= $apellidos?>' ></input>
                 </div>
                 <div class='form-group col-md-4'id='group-correo'>
                     <label for=""><strong>Correo:</strong></label>
-                    <input type='text' class='form-control' name='correo' id='correo'value='<?= $correo ?> '></input>
+                    <input type='text' class='form-control' name='correo' id='correo'value='<?= $correo ?>'></input>
                 </div>
                 <div class='form-group col-md-3'id='group-correo'>
                     <label for=""><strong>Password:</strong>

@@ -1,12 +1,18 @@
-
-
+var nombre;
+var apellidos;
+var correo;
 
 $( document ).ready( function() {
+    nombre = $( '#nombre' ).val();
+    apellidos = $( "#apellidos" ).val();
+    correo = $( '#correo' ).val();
+    
     $.ajax({
         "url"       :   "./cargapaises.php",
         "dataType"  :   "json"
     })
     .done( function( json ) {
+       
             $( "#idpais" ).html( "" );
             $( "#idpais" ).append( $( "<option>",{
                 "text"  : "-- Seleccione pais",
@@ -20,14 +26,11 @@ $( document ).ready( function() {
                 }));
             });
             $( "#idpais" ).val( $( "#idpais-hidden" ).val() );
-
+            carga_edos( $("#idpais-hidden" ).val() );
     })
     .fail(function(){
-        alert( "ERROR: Something happened"); 
+        alert( "ERROR: Something happened "); 
         });  
-
-    carga_edos( $("#idpais-hidden" ).val() );
-    carga_mpios( $( "#idpais-hidden" ).val(), $( "#idedo-hidden" ).val());
 
     // Evento change del pais
     $( "#idpais" ).change( function() {
@@ -43,6 +46,9 @@ $( document ).ready( function() {
     //Evento click restablecer
     $( "button[type='reset']").click( function( e ) {
         e.preventDefault();
+        $( "#nombre" ).val( nombre );
+        $( "#apellidos" ).val( apellidos );
+        $( "#correo" ).val( correo );
         $( "#idpais" ).val( $( "#idpais-hidden" ).val() );
         carga_edos( $("#idpais-hidden" ).val() );
         carga_mpios( $( "#idpais-hidden" ).val(), $( "#idedo-hidden" ).val());
@@ -76,10 +82,13 @@ function carga_edos( idpais ){
             $( "#idedo" ).val( $( "#idedo-hidden" ).val()); 
             carga_mpios($("#idpais").val(), $("#idedo").val());
          }
+         else{
+         carga_mpios( $( "#idpais-hidden" ).val(), $( "#idedo-hidden" ).val());
+         }
     })
 
     .fail( function() { 
-        alert( "ERROR: Something happened" );
+        alert( "ERROR: Something happened b" );
     })
 }
 

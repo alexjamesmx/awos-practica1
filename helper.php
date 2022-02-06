@@ -1,7 +1,4 @@
 <?php 
- ini_set('display_errors', 1);
- ini_set('display_startup_errors', 1);
- error_reporting(E_ALL);
 //BIBLIOTECA DE FUNCIONES 
     // contectar()         : Conectar a una BD 
     // desconectar()       : Desconectar
@@ -18,7 +15,7 @@
 function conectar(){
     $servidor = "127.0.0.1";
     $usuario = "root";
-    $password ="Alejandro2mx";
+    $password ="alejandro2mx";
     $bd = "bd_awos";
     $mysqli = new mysqli( $servidor, $usuario, $password, $bd );
  
@@ -37,14 +34,17 @@ function query($sql){
     return $rs;
 }
 
-function verifica_usuario($usuario,$contrasenia){
-    $rs = query("select * from personas where correo like binary 
-    '$usuario' and contrasenia like binary '$contrasenia'");
-    echo $rs->num_rows == 1;
+function verifica_usuario($correo,$contrasenia){
+    $rs = query("select * from personas where
+            correo like binary '$correo' and 
+            contrasenia like binary '$contrasenia'");
+    return $rs->num_rows == 1;
 }
 
-function sesion_valida(){
+function sesion_valida( $correo, $idsesion){
     
-}
+    return $correo == $_SESSION[ 'correo' ] &&
+        $idsesion == session_id();
+} 
 
 ?>
