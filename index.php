@@ -50,9 +50,7 @@ extract($_REQUEST) //DETECTAR ERROR
             </form>
           </div>
           <div class='card-footer bg-info bg-opacity-50 text-center'>
-            <a href="#"
-            data-bs-toggle='modal'
-            data-bs-target='#modal-registro'> <i class='fas fa-user-plus'></i>
+            <a href="#" data-bs-toggle='modal' data-bs-target='#modal-registro'> <i class='fas fa-user-plus'></i>
               Registra usuario</a>
           </div>
         </div>
@@ -82,13 +80,14 @@ extract($_REQUEST) //DETECTAR ERROR
             $mensaje = "El usuario ha sido registrado con exito";
             break;
           default:
+            $tipo  = "danger";
             $mensaje = "Error desconocido paso";
         }
 
       ?>
 
         <div class="alert alert-<?= $tipo ?> alert-dismissible fade show col-md-6" role="alert">
-          <strong><?= $tipo == 'danger' ? "ERROR: " : "SUCCESS:"  ?>:</strong> <?= $mensaje ?>
+          <strong><?= $tipo == 'danger' ? "ERROR: " : "SUCCESS:"  ?>:</strong> <?= $mensaje ?>.
           <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -109,11 +108,26 @@ extract($_REQUEST) //DETECTAR ERROR
           <h5 class="modal-title" id="exampleModalLabel">New user</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <form action='./registro.php' method='post'>
-        <div class="modal-body">
+        <form action='./registro.php?<?= $idpais ?>' method='post'>
+          <div class="modal-body">
 
 
-
+            <div class='form-group' id='group-modal-nombre'>
+              <label><strong>Nombre:</strong></label>
+              <input type="text" class='form-control' name='modalnombre' id='modal-nombre' />
+            </div>
+            <div class='form-group' id='group-modal-apellidos'>
+              <label><strong>Apellidos:</strong></label>
+              <input type="text" class='form-control' name='modalapellidos' id='modal-apellidos' />
+            </div>
+            <div class='form-group' id='group-modal-correo'>
+              <label><strong>Correo:</strong></label>
+              <input type="text" class='form-control' name='modalcorreo' id='modal-correo' />
+            </div>
+            <div class='form-group' id='group-modal-contrasenia'>
+              <label><strong>Password:</strong></label>
+              <input type="password" class='form-control' name='modalcontrasenia' id='modal-contrasenia' />
+            </div>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
@@ -125,7 +139,7 @@ extract($_REQUEST) //DETECTAR ERROR
               Save changes
             </button>
           </div>
-          
+
         </form>
       </div>
     </div>
