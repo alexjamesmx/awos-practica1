@@ -18,7 +18,7 @@ function conectar(){
     $password ="alejandro2mx";
     $bd = "bd_awos";
     $mysqli = new mysqli( $servidor, $usuario, $password, $bd );
- 
+    mysqli_set_charset($mysqli, "UTF-8");
  return $mysqli;
 }
 

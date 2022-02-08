@@ -40,6 +40,7 @@ else if ( $accion == "cambio" ){
 <script src='./node_modules/jquery/jquery.min.js'></script>
 <script src='./node_modules/bootstrap/dist/js/bootstrap.min.js'></script>
 <script src='./formulario.js'></script> 
+<script src="./mensajes.js"></script>
 </head>
 <body>
     <div class="container mt-2 mb-4 ">

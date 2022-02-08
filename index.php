@@ -15,6 +15,7 @@ extract($_REQUEST) //DETECTAR ERROR
   <script src='./node_modules/jquery/jquery.min.js'></script>
   <script src='./node_modules/bootstrap/dist/js/bootstrap.min.js'></script>
   <script src="./login.js"></script>
+  <script src="./mensajes.js"></script>
 </head>
 
 <body>
@@ -31,7 +32,7 @@ extract($_REQUEST) //DETECTAR ERROR
           </div>
           <div class='card-body '>
 
-            <form action="./inicio.php" method='post'>
+            <form action="./inicio.php" method='post'id='form-login'>
 
               <div class='form-group' id='group-correo'>
                 <label for=""><strong>Correo:</strong></label>
@@ -108,7 +109,7 @@ extract($_REQUEST) //DETECTAR ERROR
           <h5 class="modal-title" id="exampleModalLabel">New user</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <form action='./registro.php?<?= $idpais ?>' method='post'>
+        <form action='./registro.php?<?= $idpais ?>' method='post'id='form-modal-registro'>
           <div class="modal-body">
 
 
@@ -127,6 +128,10 @@ extract($_REQUEST) //DETECTAR ERROR
             <div class='form-group' id='group-modal-contrasenia'>
               <label><strong>Password:</strong></label>
               <input type="password" class='form-control' name='modalcontrasenia' id='modal-contrasenia' />
+            </div>
+            <div class='form-group' id='group-modal-contrasenia-2'>
+              <label><strong>Password:</strong>(type again)<strong>:</strong></label>
+              <input type="password" class='form-control' name='modalcontrasenia2' id='modal-contrasenia-2' />
             </div>
           </div>
           <div class="modal-footer">
